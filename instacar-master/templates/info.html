@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        form {
+            margin: 0 auto;
+            width:350px;
+        }
+    </style>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <title>Ride Sharing Application</title>
+    </head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark">
+            <h2 style="color:white;"><a href="{% url 'index' %}">Ride Sharing application</a></h2>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Signup</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <br><br><br>
+        <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <p><b>Name</b> <input type="text" name="name" value="{{name}}" class="form-control" required><br></p>
+            <p><b>Pickup Address</b> <input type="text" name="pickup" class="form-control"  required><br></p>
+            <p><b>Pickup Time</b> <br><input type="time" name = "time" required><br></p>
+            <p><b>Phone</b> <input type="text" class="form-control" name="phone" value={{phone}} required><br></p>
+            <p><b>E-mail</b> <input type="email" class="form-control" name="email" value="{{email}}" required><br></p>
+            <button type="submit" class="btn btn-success">Pay</button>
+        </div>
+        </form>
+    </body>
+</html>
